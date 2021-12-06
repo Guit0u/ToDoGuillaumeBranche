@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent">
-
-
-
 
     <TextView
             android:id="@+id/task_title"
@@ -20,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
+    <TextView
             android:id="@+id/task_desc"
             android:background="@android:color/holo_blue_bright"
             android:layout_width="match_parent"
@@ -28,10 +24,21 @@
 
     </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/delete_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:src="@android:drawable/ic_menu_delete" />
+    <ImageButton
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:contentDescription="@string/delete_button"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        app:tint="@android:color/black" />
+    <ImageButton
+        android:id="@+id/modify_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:backgroundTint="@android:color/holo_blue_light"
+        app:tint = "@android:color/black"
+        android:contentDescription="@string/modify_button"/>
 
-    </LinearLayout>
+</LinearLayout>
