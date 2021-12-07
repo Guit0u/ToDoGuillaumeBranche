@@ -7,9 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.guillaumebranche.todo.databinding.FragmentTaskListBinding
 import com.example.guillaumebranche.todo.form.FormActivity
+import com.example.guillaumebranche.todo.network.TasksRepository
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class TaskListFragment : Fragment() {
 
@@ -80,6 +84,8 @@ class TaskListFragment : Fragment() {
         return binding.root
     }
 
+    private val tasksRepository = TasksRepository()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         adapter = TaskListAdapter(adapterListener)
@@ -89,8 +95,19 @@ class TaskListFragment : Fragment() {
             val intent = Intent(activity, FormActivity::class.java)
             formLauncher.launch(intent)
         }
+        lifecycleScope.launch { // on lance une coroutine car `collect` est `suspend`
+            tasksRepository.taskList.collect { list ->
+                adapter.submitList(list)
+            }
+        }
     }
 
+    override fun onResume() {
+        super.onResume()
+        lifecycleScope.launch {
+            tasksRepository.refresh() // on demande de rafraîchir les données sans attendre le retour directement
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
