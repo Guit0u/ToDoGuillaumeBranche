@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.load
 import com.example.guillaumebranche.todo.databinding.FragmentTaskListBinding
 import com.example.guillaumebranche.todo.form.FormActivity
 import kotlinx.coroutines.flow.collect
@@ -99,6 +100,8 @@ class TaskListFragment : Fragment() {
         super.onResume()
         lifecycleScope.launch {
             viewModel.loadTasks() // on demande de rafraîchir les données sans attendre le retour directement
+            binding.avatar.load("https://goo.gl/gEgYUd")
+
         }
     }
 

@@ -4,4 +4,6 @@
     <string name="delete_button">Delete Button</string>
     <string name="modify_button">Modify Button</string>
     <string name="ownerText">Name</string>
+    <string name="avatar">Avatar</string>
+
 </resources>
