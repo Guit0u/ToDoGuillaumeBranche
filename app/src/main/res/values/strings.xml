@@ -3,4 +3,5 @@
     <string name="add_button">Add Floating Button</string>
     <string name="delete_button">Delete Button</string>
     <string name="modify_button">Modify Button</string>
+    <string name="ownerText">Name</string>
 </resources>
