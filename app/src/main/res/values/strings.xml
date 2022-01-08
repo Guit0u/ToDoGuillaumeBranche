@@ -5,5 +5,8 @@
     <string name="modify_button">Modify Button</string>
     <string name="ownerText">Name</string>
     <string name="avatar">Avatar</string>
+    <string name="photo_button">Prendre une photo</string>
+    <string name="image_button">Choisir une Image</string>
+    <string name="user_info_image_desc">Avatar</string>
 
 </resources>

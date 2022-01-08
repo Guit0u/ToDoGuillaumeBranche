@@ -11,9 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import coil.transform.CircleCropTransformation
 import com.example.guillaumebranche.todo.databinding.FragmentTaskListBinding
 import com.example.guillaumebranche.todo.form.FormActivity
-import kotlinx.coroutines.flow.collect
+import com.example.guillaumebranche.todo.network.Api
+import com.example.guillaumebranche.todo.user.UserInfoActivity
 import kotlinx.coroutines.launch
 
 class TaskListFragment : Fragment() {
@@ -100,7 +102,16 @@ class TaskListFragment : Fragment() {
         super.onResume()
         lifecycleScope.launch {
             viewModel.loadTasks() // on demande de rafraîchir les données sans attendre le retour directement
-            binding.avatar.load("https://goo.gl/gEgYUd")
+            val userInfo = Api.userWebService.getInfo().body()
+
+            binding.avatar.load(userInfo?.avatar){
+                transformations(CircleCropTransformation())
+            }
+
+            binding.avatar.setOnClickListener{
+                val intent = Intent(activity, UserInfoActivity::class.java)
+                startActivity(intent)
+            }
 
         }
     }
